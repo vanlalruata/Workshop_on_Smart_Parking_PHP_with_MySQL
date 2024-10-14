@@ -1,12 +1,19 @@
 <?php
 session_start();
-include 'db.php'; 
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if ($username == 'admin' && $password == 'admin123') { // Dummy credentials
+    $query = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['admin'] = $username;
         header('Location: dashboard.php');
         exit();
@@ -21,21 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Login</title>
 </head>
 <body>
-    <h2>Admin Login</h2>
 
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+<h2>Login</h2>
 
-    <form action="login.php" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+<?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+<form action="login.php" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
 
-        <button type="submit">Login</button>
-    </form>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">Login</button>
+</form>
+
 </body>
 </html>
