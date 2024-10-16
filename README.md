@@ -6,7 +6,25 @@ This project is a simple **Admin Dashboard** built with PHP and MySQL. It provid
 
 ## 📁 Folder Structure
 
-project-root/ │ ├── config/ │ └── db.php # Database connection file │ ├── public/ │ ├── css/ │ │ └── styles.css # Optional: External CSS (if needed) │ ├── index.php # Landing page (optional redirect to login) │ ├── login.php # Login page with authentication logic │ ├── register.php # User registration page │ ├── dashboard.php # Admin dashboard with post/user stats │ ├── manage_posts.php # Manage posts (CRUD operations) │ ├── create_post.php # Form to create new posts │ ├── edit_post.php # Form to edit posts │ ├── logout.php # Logout script to destroy session │ └── README.md # Documentation (this file)
+project-root/
+│
+├── config/                 # Configuration folder
+│   └── db.php              # Database connection script
+│
+├── ├── data_table.sql      # Database script
+|   ├── index.php           # Landing page (optional redirect to login)
+│   ├── login.php           # Login page with authentication logic
+│   ├── register.php        # User registration form
+│   ├── dashboard.php       # Admin dashboard with cards and stats
+│   ├── manage_posts.php    # Manage posts with CRUD functionality
+│   ├── create_post.php     # Form to create a new post
+│   ├── edit_post.php       # Form to edit an existing post
+│   ├── logout.php          # Logout script to destroy session
+│
+├── db/                     # Database files
+│   └── admin_dashboard.sql # SQL file for setting up database tables
+│
+└── README.md               # Project documentation
 
 
 ---
