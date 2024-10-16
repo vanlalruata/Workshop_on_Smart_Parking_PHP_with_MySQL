@@ -33,31 +33,10 @@ project-root/ │ ├── config/ │ └── db.php # Database connection f
 
 ---
 
-## 🔧 Setup Instructions
+## 🔧 User Authentication
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/vanlalruata/.git
-cd your-repo-name
-
-
-mysql -u your_user -p your_password admin_dashboard < db/admin_dashboard.sql
-
-
-<?php
-$conn = mysqli_connect("localhost", "your_user", "your_password", "admin_dashboard");
-
-if (!$conn) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-?>
-
-
-php -S localhost:8000 -t public/
-
-
-Open your browser and visit:
-http://localhost:8000/login.php
+- **Register a new user:** Visit register.php.
+- **Login:** Use the newly registered username and password.
+- **Access Admin Dashboard:** On successful login, you will be redirected to dashboard.php.
 
 
